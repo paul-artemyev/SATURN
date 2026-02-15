@@ -11,7 +11,7 @@ private:
 public:
     Planet(const std::string& name, double mass_kg, double radius_km, bool hasRings = false);
 
-    std::string description() const override;
+    std::string description() const;
 
     bool getHasRings() const { return hasRings; }
 };

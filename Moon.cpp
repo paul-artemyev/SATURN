@@ -1,21 +1,26 @@
 #include "Moon.hpp"
-#include <sstream>
+#include <string>
 
 Moon::Moon(const std::string& name, double mass_kg, double radius_km,
-           std::shared_ptr<Planet> parent, int yearDiscovered)
-    : CelestialBody(name, mass_kg, radius_km),
-      parentPlanet(parent),
-      yearDiscovered(yearDiscovered) {}
+           Planet* parent, int yearDiscovered) {
+    this->name = name;
+    this->mass_kg = mass_kg;
+    this->radius_km = radius_km;
+    this->parentPlanet = parent;
+    this->yearDiscovered = yearDiscovered;
+}
 
 std::string Moon::description() const {
-    std::ostringstream oss;
-    oss << "Спутник " << name << " планеты " << parentPlanet->getName()
-        << ", масса " << mass_kg << " кг"
-        << ", радиус " << radius_km << " км";
+    std::string result = "Спутник " + name + " планеты " +
+                         (parentPlanet ? parentPlanet->getName() : "неизвестно") +
+                         ", масса " + std::to_string(mass_kg) + " кг" +
+                         ", радиус " + std::to_string(radius_km) + " км";
+
     if (yearDiscovered > 0) {
-        oss << ", открыт в " << yearDiscovered << " г.";
+        result += ", открыт в " + std::to_string(yearDiscovered) + " г.";
     }
-    return oss.str();
+
+    return result;
 }
 
 double Moon::relativeSizeToParent() const {

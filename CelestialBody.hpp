@@ -7,10 +7,11 @@
 class CelestialBody {
 protected:
     std::string name;
-    double mass_kg;      // масса в кг
-    double radius_km;    // радиус в км
+    double mass_kg;
+    double radius_km;
 
 public:
+    CelestialBody() = default;
     CelestialBody(const std::string& name, double mass_kg, double radius_km);
     virtual ~CelestialBody();
 

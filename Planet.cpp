@@ -1,14 +1,16 @@
 #include "Planet.hpp"
-#include <sstream>
+#include <string>
 
-Planet::Planet(const std::string& name, double mass_kg, double radius_km, bool hasRings)
-    : CelestialBody(name, mass_kg, radius_km), hasRings(hasRings) {}
+Planet::Planet(const std::string& name, double mass_kg, double radius_km, bool hasRings) {
+    this->name = name;
+    this->mass_kg = mass_kg;
+    this->radius_km = radius_km;
+    this->hasRings = hasRings;
+}
 
 std::string Planet::description() const {
-    std::ostringstream oss;
-    oss << "Планета " << name
-        << ", масса " << mass_kg << " кг"
-        << ", радиус " << radius_km << " км"
-        << ", " << (hasRings ? "есть кольца" : "нет колец");
-    return oss.str();
+    return "Планета " + name +
+           ", масса " + std::to_string(mass_kg) + " кг" +
+           ", радиус " + std::to_string(radius_km) + " км" +
+           ", " + (hasRings ? "есть кольца" : "нет колец");
 }
